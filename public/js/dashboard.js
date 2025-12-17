@@ -1,4 +1,5 @@
-import { fetchJSON, formatKickoff, formatStatus, renderMessage } from './common.js';
+const utils = window.AppUtils || {};
+const { fetchJSON, formatKickoff, formatStatus, renderMessage } = utils;
 
 const form = document.getElementById('search-form');
 const searchResults = document.getElementById('search-results');

@@ -1,4 +1,5 @@
-import { fetchJSON, formatKickoff, formatStatus, renderMessage } from './common.js';
+const utils = window.AppUtils || {};
+const { fetchJSON, formatKickoff, formatStatus, renderMessage } = utils;
 
 const liveList = document.getElementById('live-list');
 const liveMeta = document.getElementById('live-meta');
