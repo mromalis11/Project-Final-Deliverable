@@ -1,0 +1,123 @@
+{
+  "liveFixtures": [
+    {
+      "fixture": {
+        "id": 101,
+        "date": "2024-11-15T18:30:00Z",
+        "status": { "long": "2nd Half", "elapsed": 67 }
+      },
+      "league": {
+        "name": "Premier League",
+        "logo": "https://media.api-sports.io/football/leagues/39.png",
+        "season": 2024
+      },
+      "teams": {
+        "home": { "id": 33, "name": "Manchester United", "logo": "https://media.api-sports.io/football/teams/33.png" },
+        "away": { "id": 49, "name": "Chelsea", "logo": "https://media.api-sports.io/football/teams/49.png" }
+      },
+      "goals": { "home": 2, "away": 1 }
+    },
+    {
+      "fixture": {
+        "id": 102,
+        "date": "2024-11-15T20:00:00Z",
+        "status": { "long": "1st Half", "elapsed": 24 }
+      },
+      "league": {
+        "name": "La Liga",
+        "logo": "https://media.api-sports.io/football/leagues/140.png",
+        "season": 2024
+      },
+      "teams": {
+        "home": { "id": 541, "name": "Real Madrid", "logo": "https://media.api-sports.io/football/teams/541.png" },
+        "away": { "id": 529, "name": "Barcelona", "logo": "https://media.api-sports.io/football/teams/529.png" }
+      },
+      "goals": { "home": 1, "away": 1 }
+    }
+  ],
+  "teamSearch": [
+    {
+      "team": {
+        "id": 33,
+        "name": "Manchester United",
+        "code": "MUN",
+        "country": "England",
+        "founded": 1878,
+        "logo": "https://media.api-sports.io/football/teams/33.png"
+      },
+      "venue": {
+        "name": "Old Trafford",
+        "address": "Sir Matt Busby Way",
+        "city": "Manchester",
+        "capacity": 74879
+      }
+    },
+    {
+      "team": {
+        "id": 40,
+        "name": "Liverpool",
+        "code": "LIV",
+        "country": "England",
+        "founded": 1892,
+        "logo": "https://media.api-sports.io/football/teams/40.png"
+      },
+      "venue": {
+        "name": "Anfield",
+        "address": "Anfield Road",
+        "city": "Liverpool",
+        "capacity": 53394
+      }
+    }
+  ],
+  "teamFixtures": [
+    {
+      "fixture": {
+        "id": 301,
+        "date": "2024-11-20T19:00:00Z",
+        "status": { "long": "Not Started", "elapsed": null }
+      },
+      "teams": {
+        "home": { "name": "Manchester United" },
+        "away": { "name": "Liverpool" }
+      },
+      "league": { "name": "Premier League" },
+      "goals": { "home": null, "away": null }
+    },
+    {
+      "fixture": {
+        "id": 302,
+        "date": "2024-11-28T20:00:00Z",
+        "status": { "long": "Not Started", "elapsed": null }
+      },
+      "teams": {
+        "home": { "name": "Manchester City" },
+        "away": { "name": "Manchester United" }
+      },
+      "league": { "name": "Premier League" },
+      "goals": { "home": null, "away": null }
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "team": { "id": 50, "name": "Arsenal", "logo": "https://media.api-sports.io/football/teams/50.png" },
+      "points": 30,
+      "all": { "played": 12, "win": 9, "draw": 3, "lose": 0, "goals": { "for": 25, "against": 7 } }
+    },
+    {
+      "rank": 2,
+      "team": { "id": 49, "name": "Chelsea", "logo": "https://media.api-sports.io/football/teams/49.png" },
+      "points": 26,
+      "all": { "played": 12, "win": 8, "draw": 2, "lose": 2, "goals": { "for": 22, "against": 10 } }
+    },
+    {
+      "rank": 3,
+      "team": { "id": 33, "name": "Manchester United", "logo": "https://media.api-sports.io/football/teams/33.png" },
+      "points": 24,
+      "all": { "played": 12, "win": 7, "draw": 3, "lose": 2, "goals": { "for": 21, "against": 12 } }
+    }
+  ],
+  "favorites": [
+    { "id": "local-1", "team_name": "Arsenal", "league": "Premier League", "note": "North London derby tracker" }
+  ]
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | GameStats Hub</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="brand">
+        <span class="brand-dot"></span>
+        GameStats Hub
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a class="active" href="/about">About</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <main class="shell">
+      <section class="hero">
+        <h1>Why we built GameStats Hub</h1>
+        <p>
+          Sports fans juggle multiple sites to track fixtures, standings, and favorite clubs. GameStats Hub condenses live
+          scores, league tables, and personalized favorites into one reliable experience powered by modern web tooling.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/">View live scores</a>
+          <a class="button" href="/dashboard">Explore the dashboard</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h3>Tech Stack</h3>
+          <p class="muted">
+            Front-end is a lightweight, React-ready prototype using ES modules, Chart.js visualizations, and dayjs
+            formatting. Backend runs on Express with Supabase for persistence and API-FOOTBALL as the live data source.
+          </p>
+          <div class="stack">
+            <span class="tag">Express + Fetch</span>
+            <span class="tag">Supabase Postgres</span>
+            <span class="tag">Chart.js · dayjs</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Pages</h3>
+          <ul class="muted">
+            <li>Home – live fixtures stream + standings snapshot</li>
+            <li>About – system goals, tech decisions, and instructions</li>
+            <li>Dashboard – search teams, view upcoming fixtures, and save favorites</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Deployment Plan</h3>
+          <p class="muted">
+            Designed for Vercel: Express server deployed as Node runtime, public folder served statically, Supabase used
+            via environment variables. A deployment checklist lives in the README developer manual.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>Data: API-FOOTBALL v3 · Storage: Supabase · UI: custom CSS with purposeful gradients</footer>
+  </body>
+</html>

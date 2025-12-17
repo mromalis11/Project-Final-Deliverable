@@ -1,0 +1,34 @@
+{
+  "name": "project-final-deliverable",
+  "version": "1.0.0",
+  "description": "GameStats Hub - full-stack project for INST377 final deliverable",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mromalis11/Project-Final-Deliverable.git"
+  },
+  "keywords": [
+    "sports",
+    "football",
+    "express",
+    "supabase",
+    "chartjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mromalis11/Project-Final-Deliverable/issues"
+  },
+  "homepage": "https://github.com/mromalis11/Project-Final-Deliverable#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.88.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}

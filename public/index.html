@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameStats Hub | Live Football Pulse</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="brand">
+        <span class="brand-dot"></span>
+        GameStats Hub
+      </div>
+      <div class="nav-links">
+        <a class="active" href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <main class="shell">
+      <section class="hero">
+        <h1>Follow live fixtures and standings from one sleek hub</h1>
+        <p>
+          Real-time match updates, quick league standings, and curated team insights powered by API-FOOTBALL,
+          Supabase, and modern visualizations.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/dashboard">Open Team Dashboard</a>
+          <a class="button" href="https://github.com/mromalis11/Project-Final-Deliverable" target="_blank" rel="noreferrer"
+            >View Source</a
+          >
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2>Live Games</h2>
+          <span id="live-meta" class="tag">loading...</span>
+        </div>
+        <div id="live-list" class="list card"></div>
+      </section>
+
+      <section style="margin-top: 24px;">
+        <div class="section-title" id="standings-header">
+          <h2>Premier League Standings</h2>
+          <span class="muted">Season 2023 - 2024</span>
+        </div>
+        <div class="card">
+          <table class="table" id="standings-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Club</th>
+                <th>Pts</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>Built for INST377 final deliverable · React-ready stack with pure JS prototype</footer>
+
+    <script type="module" src="/js/home.js"></script>
+  </body>
+</html>

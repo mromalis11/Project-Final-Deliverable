@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | GameStats Hub</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="brand">
+        <span class="brand-dot"></span>
+        GameStats Hub
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a class="active" href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <main class="shell">
+      <section class="hero">
+        <h1>Team intelligence dashboard</h1>
+        <p>
+          Search any club, view their upcoming fixtures, track trends with live charts, and save favorites to Supabase.
+          All data flows through our Express proxy to keep keys safe.
+        </p>
+      </section>
+
+      <section class="two-col">
+        <div class="card">
+          <div class="section-title">
+            <h2>Search teams</h2>
+            <span class="muted">Backed by API-FOOTBALL v3</span>
+          </div>
+          <form id="search-form" class="input-row">
+            <input id="team-input" name="team" placeholder="Try Arsenal, Chelsea, Barcelona..." required />
+            <button class="button primary" type="submit">Search</button>
+          </form>
+          <div id="search-results" class="list" style="margin-top: 14px;"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <h2>Favorites</h2>
+            <span class="muted" id="favorites-meta">Loading...</span>
+          </div>
+          <div id="favorites-list" class="stack"></div>
+        </div>
+      </section>
+
+      <section style="margin-top: 20px;">
+        <div class="section-title">
+          <h2>Fixtures + Momentum</h2>
+          <span class="muted" id="fixtures-meta">Search to load team fixtures</span>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Upcoming fixtures</h3>
+            <div id="fixture-list" class="list"></div>
+          </div>
+          <div class="card">
+            <h3>Goals trend (Chart.js)</h3>
+            <canvas id="fixture-chart" height="240"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Powered by Express + Supabase · Visualization: Chart.js · Dates: dayjs</footer>
+
+    <script type="module" src="/js/dashboard.js"></script>
+  </body>
+</html>
