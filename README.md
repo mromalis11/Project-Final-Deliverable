@@ -1,30 +1,41 @@
 # GameStats Hub
-Live football (soccer) scores, standings, team search, and favorites in one hub. Built for the INST377 final deliverable with an Express backend, Supabase persistence, and a modern, gradient-forward UI using Chart.js + dayjs on the front end.
+Live football scores, standings, team search, and favorites in one hub.
 
 ## Target browsers
-- Chrome 121+ (desktop & Android)
-- Safari 17+ (iOS/iPadOS, macOS)
+- Chrome 121+ (desktop/Android)
+- Safari 17+ (iOS/iPadOS/macOS)
 - Firefox 122+
 - Edge 121+
 
 ## Quick links
-- Live pages: `/` (Home), `/dashboard`, `/about`
-- Developer manual: see below and `docs/developer-manual.md`
-- Repo: https://github.com/mromalis11/Project-Final-Deliverable
+- Pages: `/` (Home), `/dashboard`, `/about`
+- Developer manual: [docs/developer-manual.md](docs/developer-manual.md)
+
+## Developer manual (summary)
+- Setup: `npm install`; copy envs `cp .env.example .env`; fill API/Supabase keys; Supabase table + RLS per linked manual.
+- Run: `npm start` → open `http://localhost:3000`.
+- APIs: `/api/live`, `/api/standings`, `/api/teams/search`, `/api/teams/:teamId/fixtures`, `/api/favorites` (details in linked manual).
+- Testing: hit `/api/health`; verify standings/fixtures show `source: api`; add a favorite and confirm in Supabase.
+- Full details: see the linked developer manual above.
 
 ---
 
-## Developer manual
-Audience: developers extending or deploying the project.
+## Developer Manual
 
-### 1) Setup
-1. Install dependencies: `npm install`
-2. Copy env vars: `cp .env.example .env`
-3. Fill in:
-   - `API_FOOTBALL_KEY` – API-FOOTBALL v3 key
-   - `SUPABASE_URL`, `SUPABASE_ANON_KEY` (or `SUPABASE_SERVICE_ROLE_KEY`)
-   - optional `PORT` (default 3000)
-4. Supabase table:
+### Prerequisites
+- Node.js 20.x, npm
+- API-FOOTBALL v3 key (`API_FOOTBALL_KEY`)
+- Supabase project with `favorites` table
+
+### Setup
+1) Install deps: `npm install`
+2) Copy envs: `cp .env.example .env`
+3) Fill in:
+   - `API_FOOTBALL_KEY`
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY` (preferred with RLS) or `SUPABASE_ANON_KEY`
+   - `PORT` (optional, default 3000)
+4) Supabase table:
    ```sql
    create table if not exists public.favorites (
      id uuid primary key default uuid_generate_v4(),
@@ -33,46 +44,33 @@ Audience: developers extending or deploying the project.
      note text,
      created_at timestamptz default now()
    );
+   alter table public.favorites enable row level security;
+   create policy "service role full access" on public.favorites
+     for all using (auth.role() = 'service_role') with check (true);
    ```
-   If RLS is enabled, allow inserts/selects for the role tied to your key.
 
-### 2) Run locally
+### Run
 ```bash
 npm start
-# visit http://localhost:3000
+# open http://localhost:3000
 ```
-Routes:
-- Home: live fixtures + standings
-- Dashboard: team search, upcoming fixtures, Chart.js goals trend, Supabase favorites
-- About: project context
+Pages: `/` (home), `/dashboard`, `/about`.
 
-### 3) API (served from `/api`)
-- `GET /api/live` – live fixtures (falls back to `data/sampleData.json` without a key)
-- `GET /api/standings?league=39&season=2024` – league table
-- `GET /api/teams/search?name=Arsenal` – search teams
-- `GET /api/teams/:teamId/fixtures?next=5` – fixtures for a team
-- `GET /api/favorites` – favorites from Supabase or in-memory fallback
-- `POST /api/favorites` – save `{ team_name, league, note? }`
+### API (served from `/api`)
+- `GET /live` – live fixtures (sample fallback when empty/error)
+- `GET /standings?league=39&season=2023` – standings (falls back with reason if empty)
+- `GET /teams/search?name=Arsenal` – team search
+- `GET /teams/:teamId/fixtures?next=5` – tries recent/upcoming, then season fixtures (first 5), else sample with fallback note
+- `GET /favorites` – Supabase favorites or in-memory fallback
+- `POST /favorites` – `{ team_name, league, note? }`
 
-### 4) Front-end notes
-- Uses Fetch API exclusively for data loads (live fixtures, standings, favorites, team search, fixtures).
-- JavaScript libraries: Chart.js for trends, dayjs for date formatting.
-- Three pages: Home, About, Dashboard (project functionality page).
-- Responsive CSS with custom gradients and expressive typography (Space Grotesk + Manrope).
+### Tests (manual)
+- `curl http://localhost:3000/api/health` → expect `supabase:true`, `apiKey:true`
+- Visit `/` to confirm `source: api` on standings when key works
+- Dashboard: search a team, click “View fixtures” and confirm `source: api` (or fallback reason) and chart updates if scores exist
+- Add a favorite and confirm it appears in Supabase
 
-### 5) Testing
-- Automated tests not included. Quick checks:
-  - `curl http://localhost:3000/api/health` to confirm keys/Supabase detection.
-  - Run a team search on the dashboard to validate API-FOOTBALL access.
-  - Add a favorite and confirm it appears (and persists in Supabase when configured).
-
-### 6) Known bugs & roadmap
-- Without API keys the app serves demo data; add keys for full live behavior.
-- Favorites rely on anon/service key; tighten RLS policies for production.
-- Add automated tests (Jest + Supertest) and CI linting.
-- Future: move UI to React/Vite for richer interactivity and deploy to Vercel.
-
-### 7) Deployment (Vercel)
-- Set `API_FOOTBALL_KEY`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY` in Vercel project env vars.
-- Deploy as a Node/Express server; static assets come from `public/`.
-- Verify `/api/health` after deployment, then point the public URL to Vercel output.
+### Known limitations / next steps
+- Free API plans block `next`/`last`; fixtures route now falls back to season fixtures then sample.
+- Favorites rely on Supabase service/anon key; tighten RLS for production.
+- Add automated API tests and CI when ready.
